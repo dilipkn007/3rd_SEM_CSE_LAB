@@ -71,3 +71,7 @@ int main()
 }
 ```
 
+### Output
+
+![first frogram output](/OutputImages/1.png)
+
