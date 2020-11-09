@@ -1,4 +1,13 @@
-1 
+1. Design, Develop and Implement a menu driven Program in C for the following array operations.
+	- Creating an array of N Integer Elements
+	- Display of array Elements with Suitable Headings
+	- Inserting an Element (ELEM) at a given valid Position (POS)
+	- Deleting an Element at a given valid Position (POS)
+	- Exit.
+
+	Support the program with functions for each of the above operations.
+
+
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,10 +82,66 @@ int main()
 
 ### Output
 
-![first frogram output](/OutputImages/1.png)
+![first frogram output](/OutputImages/1.png "1")
 
 ___
 
 2
-```c
+```c	
+#include<stdio.h>
+char STR[100],PAT[100],REP[100],ANS[100];
+int i,j,c,m,k,flag=0;
+void read()
+{
+	printf("\nEnter the MAIN string : ");
+	gets(STR);
+	printf("\nEnter the PATTERN string which has to be replaced : ");
+	gets(PAT);
+	printf("\nEnter the string to REPLACE : ");
+	gets(REP);
+}
+void replaceSubstring()
+{
+	i=m=c=j=k=0;
+	while( STR[c] != '\0')
+	{
+		 if ( STR[m] == PAT[i] )
+		{
+		 	m++; i++; 
+		 	flag=1;
+		 	if ( PAT[i] == '\0')
+		 		{
+		 		  for(k=0; REP[k] != '\0';k++,j++)
+		 		  	ANS[j]=REP[k];
+		 		  i=0;
+		 		  c=m;
+		 		}
+		}
+		else
+		{
+			ANS[j] = STR[c]; 
+			j++; c++; m++;
+			i=0;
+		}
+	}
+	if(flag==0)
+	{
+		printf("\nPattern doesn't found!!!");
+	}
+	else
+	{
+		ANS[j] = '\0';
+		printf("\nThe RESULTANT string is : %s\n" ,ANS);
+	}
+}
+int main()
+{
+	read(); replaceSubstring();	
+}
+```
+
+### Output
 	
+![first frogram output](/OutputImages/2.png "2")
+
+___
