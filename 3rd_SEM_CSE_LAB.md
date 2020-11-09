@@ -86,7 +86,12 @@ int main()
 
 ___
 
-2
+2. Design, Develop and Implement a Program in C for the following operations on Strings.
+	- Read a main String (STR), a Pattern String (PAT) and a Replace String (REP)
+	- Perform Pattern Matching Operation: Find and Replace all occurrences of PAT in STR with REP if PAT exists in STR. Report suitable messages in case PAT does not exist in STR
+
+	Support the program with functions for each of the above operations. Don't use Built-in functions.
+
 ```c	
 #include<stdio.h>
 char STR[100],PAT[100],REP[100],ANS[100];
@@ -141,7 +146,53 @@ int main()
 ```
 
 ### Output
-	
+
 ![first frogram output](/OutputImages/2.png "2")
 
 ___
+
+3. Design, Develop and Implement a menu driven Program in C for the following operations on STACK of Integers (Array Implementation of Stack with maximum size MAX)
+	- Push an Element on to Stack
+	- Pop an Element from Stack
+	- Demonstrate how Stack can be used to check Palindrome
+	- Demonstrate Overflow and Underflow situations on Stack
+	- Display the status of Stack
+	- Exit
+	
+	Support the program with appropriate functions for each of the above operations.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
+
+4. Design, Develop and Implement a Program in C for converting an Infix Expression to Postfix Expression. Program should support for both parenthesized and free parenthesized expressions with the operators: +, -, *, /, % (Remainder), ^ (Power) and alphanumeric operands.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
+
+5. Design, Develop and Implement a Program in C for the following Stack Applications.
+	- Evaluation of Suffix expression with single digit operands and operators: +, -, *, /, %,^.
+	- Solving Tower of Hanoi problem with n disks.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___	
