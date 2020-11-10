@@ -163,6 +163,81 @@ ___
 
 ```c
 
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define max_size 5
+int i,n,keep,rem,num[max_size],stack[max_size],tos=-1;
+void push(int n)
+{
+	stack[++tos]=n;
+}
+int pop()
+{
+	return stack[tos--];
+}
+void palindrome()
+{
+	tos=-1;
+	printf("\nEnter the number to be checked : ");
+	scanf("%d",&keep);
+	n=keep;
+	while(n!=0)
+	{
+		rem=n%10;
+		push(rem);
+		n=n/10;
+	}
+	for(i=0;tos!=-1;i++)
+		n=n+pop()*pow(10,i);
+	if(keep==n)
+		printf("Palindrome\n");
+	else	  
+		printf("Not Palindrome\n");
+}
+void display()
+{
+	for(i=tos;i>=0;i--)
+		printf("\t\t\t\t|%d|\n",stack[i]);
+} 
+int main()
+{
+	int choice;
+	printf("\nEnter\n\t\t1 to Push the element to the stack\n\t\t2 to Pop the stack element\n\t\t3 to check for Palindrome\n\t\t4 to Display the stack element\n\t\t5 to Exit\n");
+    while(1)
+    {
+    	printf("\n\nEnter your choice ---> ");
+    	scanf("%d",&choice);
+        switch(choice)
+        {
+        	case 1: if(max_size-1==tos)
+							printf("\nStack overflow");
+						else
+							{
+								printf("\nEnter the element to be pushed : ");
+								scanf("%d",&n);
+								push(n);
+							}
+        	break;
+        	case 2: if(tos==-1)
+							printf("\nStack Underflow");
+						else
+							printf("\nPopped element is %d",pop());
+        	break;
+        	case 3: palindrome();
+        	break;
+        	case 4: if(tos==-1)
+							printf("\nThe stack is empty");
+						else
+							display();
+        	break;
+        	case 5: exit(0);
+        	break;
+        	default: printf("\nInvalid choice:\n");
+        }
+    }
+return 0;
+}
 ```
 
 ### Output
