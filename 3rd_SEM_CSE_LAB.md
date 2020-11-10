@@ -242,7 +242,7 @@ return 0;
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/3.png "3")
 
 ___
 
@@ -271,3 +271,116 @@ ___
 ![Third program output]()
 
 ___	
+
+6. Design, Develop and Implement a menu driven Program in C for the following operations on Circular QUEUE of Characters (Array Implementation of Queue with maximum size MAX).
+	- Insert an Element on to Circular QUEUE
+	- Delete an Element from Circular QUEUE
+	- Demonstrate Overflow and Underflow situations on Circular QUEUE
+	- Display the status of Circular QUEUE
+	- Exit
+
+	Support the program with appropriate functions for each of the above operations
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___	
+
+7. Design, Develop and Implement a menu driven Program in C for the following operations on Singly Linked List (SLL) of Student Data with the fields: USN, Name, Programme, Sem,PhNo.
+	- Create a SLL of N Students Data by using front insertion.
+	- Display the status of SLL and count the number of nodes in it
+	- Perform Insertion / Deletion at End of SLL
+	- Perform Insertion / Deletion at Front of SLL(Demonstration of stack)
+	- Exit
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___	
+
+8. Design, Develop and Implement a menu driven Program in C for the following operations on Doubly Linked List (DLL) of Employee Data with the fields: SSN, Name, Dept, Designation,Sal, PhNo
+	- Create a DLL of N Employees Data by using end insertion.
+	- Display the status of DLL and count the number of nodes in it
+	- Perform Insertion and Deletion at End of DLL
+	- Perform Insertion and Deletion at Front of DLL
+	- Demonstrate how this DLL can be used as Double Ended Queue.
+	- Exit
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___	
+
+9. Design, Develop and Implement a Program in C for the following operationson Singly Circular Linked List (SCLL) with header nodes
+	- Represent and Evaluate a Polynomial P(x,y,z) = 6x<sup>2</sup>y<sup>2</sup>z-4yz<sup>5</sup>+3x<sup>3</sup>yz+2xy<sup>5</sup>z-2xyz<sup>3</sup>
+	- Find the sum of two polynomials POLY1(x,y,z) and POLY2(x,y,z) and store the
+result in POLYSUM(x,y,z)
+
+	Support the program with appropriate functions for each of the above operations.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
+
+10. Design, Develop and Implement a menu driven Program in C for the following operations on Binary Search Tree (BST) of Integers.
+	- Create a BST of N Integers: 6, 9, 5, 2, 8, 15, 24, 14, 7, 8, 5, 2
+	- Traverse the BST in Inorder, Preorder and Post Order
+	- Search the BST for a given element (KEY) and report the appropriate message
+	- Exit
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
+
+11. Design, Develop and Implement a Program in C for the following operations on Graph(G) of Cities.
+	- Create a Graph of N cities using Adjacency Matrix.
+	- Print all the nodes reachable from a given starting node in a digraph using DFS/BFS method.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
+
+12. Given a File of N employee records with a set K of Keys (4-digit) which uniquely determine the records in file F. Assume that file F is maintained in memory by a Hash Table (HT) of m memory locations with L as the set of memory addresses (2-digit) of locations in HT. Let the keys in K and addresses in L are Integers. Design and develop a Program in C that uses Hash function H: K ®L as H(K)=K mod m (remainder method), and implement hashing technique to map a given key K to the address space L. Resolve the collision (if any) using linear probing.
+
+```c
+
+```
+
+### Output
+
+![Third program output]()
+
+___
