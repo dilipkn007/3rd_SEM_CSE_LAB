@@ -125,7 +125,7 @@ void replaceSubstring()
 		else
 		{
 			ANS[j] = STR[c]; 
-			j++; c++; m++;
+			j++; c++; m=c;
 			i=0;
 		}
 	}
