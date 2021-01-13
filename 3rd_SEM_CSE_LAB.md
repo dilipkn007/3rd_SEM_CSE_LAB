@@ -310,7 +310,7 @@ int main()
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/4.png "4")
 
 ___
 
