@@ -384,6 +384,34 @@ int main()
 ![Third program output](/OutputImages/5a1.png "5a1")
 ![Third program output](/OutputImages/5a2.png "5a2")
 
+```c
+#include<stdio.h>
+void tower(int n,char from,char to,char aux)
+{
+    if(n==1)
+    {
+        printf("\nMove disk 1 from %c to %c",from,to);
+        return;
+    }
+    tower(n-1,from,aux,to);
+    printf("\nMove disk 1 from %c to %c",from,to);
+    tower(n-1,aux,to,from);
+}
+int main()
+{
+    int n;
+    printf("\nEnter number of disks : ");
+    scanf("%d",&n);
+    printf("\nFollow this sequence to move from peg A to peg B :- \n");
+    tower(n,'A','B','C');
+    return 0;
+}
+```
+
+### Output
+
+![Third program output](/OutputImages/5b.png "5a1")
+
 ___	
 
 6. Design, Develop and Implement a menu driven Program in C for the following operations on Circular QUEUE of Characters (Array Implementation of Queue with maximum size MAX).
@@ -396,12 +424,77 @@ ___
 	Support the program with appropriate functions for each of the above operations
 
 ```c
-
+#include<stdio.h>
+#include<stdlib.h>
+#define size 5
+int q[size],f=-1,r=-1;
+void enqueue(int e)
+{
+	r=(r+1)%size;
+	q[r]=e;	
+}
+int dequeue()
+{
+	f=(f+1)%size;
+	return q[f];
+}
+void display()
+{
+	if(f==r)
+		printf("\nQueue is empty");
+	else
+	{
+		int i=f+1;
+		do
+		{
+			printf("%d\t",q[i]);
+			i=(i+1)%size;
+		} while (i!=(r+1)%size);
+	}
+}
+int main()
+{
+	int ch,e;
+	printf("\nEnter\n\t\t1 to add an element in the Queue\n\t\t2 to delete an element in the Queue\n\t\t3 to display the queue\n\t\t4 to exit");
+	while(1)
+	{
+		printf("\nEnter your choice----->");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1: 
+				if((r+1)%size==f || (r==size-1 && f==-1))
+					printf("\nQueue is full");
+				else
+				{
+					printf("\nEnter the element : ");
+					scanf("%d",&e);
+					enqueue(e);
+				}
+				break;
+			case 2:
+	 			if(f==r)
+	 				printf("\nQueue is empty");
+	 			else
+					printf("\nDeleted element is %d",dequeue());
+				break;
+			case 3:
+				display();
+				break;
+			case 4:
+				exit(0)	;
+			default:
+				printf("\nInvalid Choice");
+				break;
+		}
+	}
+	return 0;
+}
 ```
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/6.png)
 
 ___	
 
@@ -413,12 +506,143 @@ ___
 	- Exit
 
 ```c
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct SLL
+{
+    long long int PhNo;
+    char SEM[5],name[50],USN[10],Program[10];
+    struct SLL *next;
+}node;
+node *start=NULL;
+node* getnode()
+{
+    char u[10];
+    node *p;
+    p=(node *)malloc(sizeof(node));
+    printf("Enter Name, USN, SEM, program and phone number of the student respectively : ");
+    scanf("%s%s%s%s%lld",p->name,p->USN,p->SEM,p->Program,&(p->PhNo));
+    p->next=NULL;
+    return p; 
+}
+void Ins_front()
+{
+    node *p;
+    p=getnode();
+    p->next=start;
+    start=p;
+}
+void  Del_front()
+{
+   node *temp=start;
+   if(start==NULL)
+   {
+     printf("List is empty ");
+     return;
+   }
+   start=start->next;
+   printf("The %s student's data is deleted\n",temp->USN);
+   free(temp);
+}
+void display()
+{
+    int count=0;
+    node *temp=start;
+    if(temp==NULL)
+    {
+      printf("List is empty\n");
+      return;
+    }
+    printf("\n\t\tName\t\tUSN\t\tSEM\t\tProgram\t\tPhone number");  
+    while(temp!=NULL)
+    {
+        printf("\n\t\t%s\t\t%s\t\t%s\t\t%s\t\t%lld",temp->name,temp->USN,temp->SEM,temp->Program,temp->PhNo);
+        temp=temp->next;
+        count++;
+    }
+    printf("\n\t\tThere are %d nodes \n",count);
+}
+void Ins_end()
+{
+  node *p,*temp=start;
+  p=getnode();
+  if(start==NULL)
+  {
+    start=p;
+    return;
+  }
+  while (temp->next!=NULL)
+    temp=temp->next;
+  temp->next=p;  
+}
+void Del_end()
+{
+   node *temp=start,*prev;
+   if(start==NULL)
+   {
+     printf("List is empty ");
+     return;
+   }
+   while (temp->next!=NULL)   
+   {
+     prev=temp;
+     temp=temp->next;
+   }
+   prev->next=NULL;
+   printf("The %s student's data is deleted\n",temp->USN);
+   free(temp);
+}
+int main()
+{
+    int n,i,op;
+    printf("Enter\n\t\t1 to Create a SLL of N Students Data by using front insertion.\n\t\t2 to Display the status of SLL and count the number of nodes in it.\n\t\t3 to Insert the node at front of SLL\n\t\t4 to Delete the node at front of SLL\n\t\t5 to Insert the node at end of SLL\n\t\t6 to Delete the node at end of SLL\n\t\t7 to exit");
+    while(1)
+    {
+         printf("\n\t\tEnter your choice -->");
+            scanf("%d",&op);
+        switch(op)
+        {
+        case 1:
+            printf("Enter the number of students : ");
+            scanf("%d",&n);
+            for(i=0;i<n;i++)
+                Ins_front();
+            break;
+        
+        case 2:
+            display();
+            break;
 
+        case 3:
+            Ins_front();
+            break;
+
+        case 4:
+            Del_front();
+            break;
+
+        case 5:
+            Ins_end();
+            break;
+
+        case 6:
+            Del_end();
+            break;
+
+        case 7:
+            exit(0);
+
+        default:
+            break;
+        }
+    }
+    return 0;
+}
 ```
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/7.png)
 
 ___	
 
@@ -431,12 +655,150 @@ ___
 	- Exit
 
 ```c
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct DLL
+{
+    struct DLL *prev;
+    long long int PhNo;
+    int sal;
+    char name[50],SSN[10],Dept[10], designation[20];
+    struct DLL *next;
+}node;
+node *start=NULL;
+node* getnode()
+{
+    node *p;
+    p=(node *)malloc(sizeof(node));
+    printf("Enter Name, Employee No, Department, salary, phone number and designation of the employee respectively : ");
+    scanf("%s%s%s%d%lld%s",p->name,p->SSN,p->Dept,&(p->sal),&(p->PhNo),p->designation);
+    p->prev=p->next=NULL;
+    return p; 
+}
+void Ins_front()
+{
+    node *p;
+    p=getnode();
+    if (start==NULL)
+    {
+      start=p;
+      return;
+    }
+    p->next=start;
+    start->prev=p;
+    start=p;
+}
+void  Del_front()
+{
+   node *temp=start;
+   if(start==NULL)
+   {
+     printf("List is empty ");
+     return;
+   }
+   start=start->next;
+   printf("The %s employee's data is deleted\n",temp->SSN);
+   free(temp);
+   start->prev=NULL;
+}
+void display()
+{
+    int count=0;
+    node *temp=start;
+    if(temp==NULL)
+    {
+      printf("List is empty\n");
+      return;
+    }
+    printf("\n\tName\tEmployee No\tDepartment\tsalary\t\tphone number\tdesignation");  
+    while(temp!=NULL)
+    {
+        printf("\n\t%s\t%s\t\t%s\t\t%d\t\t%lld\t%s",temp->name,temp->SSN,temp->Dept,temp->sal,temp->PhNo,temp->designation);
+        temp=temp->next;
+        count++;
+    }
+    printf("\n\t\tThere are %d nodes \n",count);
+}
+void Ins_end()
+{
+  node *p,*temp=start;
+  p=getnode();
+  if(start==NULL)
+  {
+    start=p;
+    return;
+  }
+  while (temp->next!=NULL)
+    temp=temp->next;
+  temp->next=p;  
+  p->prev=temp;
+}
+void Del_end()
+{
+   node *temp=start,*prev;
+   if(start==NULL)
+   {
+     printf("List is empty ");
+     return;
+   }
+   while (temp->next!=NULL)   
+     temp=temp->next;
+   (temp->prev)->next=NULL;
+   printf("The %s Employees's data is deleted\n",temp->SSN);
+   free(temp);
+}
+int main()
+{
+    int n,i,op;
+    printf("Enter\n\t\t1 to Create a DLL of N Employees Data by using end insertion.\n\t\t2 to Display the status of DLL and count the number of nodes in it.\n\t\t3 to Insert the node at front of DLL\n\t\t4 to Delete the node at front of DLL\n\t\t5 to Insert the node at end of DLL\n\t\t6 to Delete the node at end of DLL\n\t\t7 to exit");
+    while(1)
+    {
+         printf("\n\t\tEnter your choice -->");
+            scanf("%d",&op);
+        switch(op)
+        {
+        case 1:
+            printf("Enter the number of Employees : ");
+            scanf("%d",&n);
+            for(i=0;i<n;i++)
+                Ins_end();
+            break;
+        
+        case 2:
+            display();
+            break;
 
+        case 3:
+            Ins_front();
+            break;
+
+        case 4:
+            Del_front();
+            break;
+
+        case 5:
+            Ins_end();
+            break;
+
+        case 6:
+            Del_end();
+            break;
+
+        case 7:
+            exit(0);
+
+        default:
+            printf("\nInvalid Choice");
+            break;
+        }
+    }
+    return 0;
+}
 ```
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/8.png)
 
 ___	
 
