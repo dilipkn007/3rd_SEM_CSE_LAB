@@ -210,25 +210,25 @@ int main()
         switch(choice)
         {
         	case 1: if(max_size-1==tos)
-							printf("\nStack overflow");
-						else
-							{
-								printf("\nEnter the element to be pushed : ");
-								scanf("%d",&n);
-								push(n);
-							}
+						printf("\nStack overflow");
+					else
+					{
+						printf("\nEnter theelement to be pushed :");
+						scanf("%d",&n);
+						push(n);
+					}
         	break;
         	case 2: if(tos==-1)
-							printf("\nStack Underflow");
-						else
-							printf("\nPopped element is %d",pop());
+						printf("\nStack Underflow");
+					else
+						printf("\nPopped element is %d",pop());
         	break;
         	case 3: palindrome();
         	break;
         	case 4: if(tos==-1)
-							printf("\nThe stack is empty");
-						else
-							display();
+						printf("\nThe stack is empty");
+					else
+						display();
         	break;
         	case 5: exit(0);
         	break;
@@ -319,12 +319,70 @@ ___
 	- Solving Tower of Hanoi problem with n disks.
 
 ```c
-
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<ctype.h>
+float stack[20];
+int tos=-1;
+void push(char c)
+{
+    stack[++tos]=c;
+}
+float pop()
+{
+    return stack[tos--];
+}
+float evaluatePostfix(char postfix[])
+{
+    char symb;
+    float op1,op2,num;
+    for (int i = 0; i < strlen(postfix); i++)
+    {
+        symb=postfix[i];
+        if(isdigit(symb))
+            push(symb-'0');
+        else if(isalpha(symb))
+        {
+            printf("\nEnter the value of %c : ",symb);
+            scanf("%f",&num);
+            push(num);
+        }
+        else
+        {
+            op2=pop(); op1=pop();
+            switch (symb)
+            {
+            case '+':push(op1+op2); break;
+            case '-':push(op1-op2); break;
+            case '*':push(op1*op2); break;
+            case '/':push(op1/op2); break;
+            case '%':push(remainder(op1,op2)); break;
+            case '^':push(pow(op1,op2)); break;
+            default:
+                printf("\nInvalid Expression");
+                exit(0);
+                break;
+            }
+        }
+    }
+    return pop();
+}
+int main()
+{
+    char postfix[20];
+    printf("\nEnter the Suffix expression(single digit operands) :");
+    scanf("%s",postfix);
+    printf("\nThe result of the expression is %f",evaluatePostfix(postfix));
+    return 0;
+}
 ```
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/5a1.png "5a1")
+![Third program output](/OutputImages/5a2.png "5a2")
 
 ___	
 
