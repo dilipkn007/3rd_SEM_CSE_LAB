@@ -810,7 +810,134 @@ result in POLYSUM(x,y,z)
 	Support the program with appropriate functions for each of the above operations.
 
 ```c
-
+#include <stdio.h>
+#include <malloc.h>
+#include <math.h>
+#include <conio.h>
+typedef struct poly
+{
+  int c, e1, e2, e3, flag;
+  struct poly *next;
+} node;
+void insEnd(node *h, int c, int e1, int e2, int e3);
+void readPoly(node *h);
+void addPoly(node *h1, node *h2, node *h3);
+void display(node * h);
+void evaluate(node * h3);
+int main()
+{
+  node *h1, *h2, *h3;
+  h1 = (node *)malloc(sizeof(node));
+  h1->next = h1;
+  h2 = (node *)malloc(sizeof(node));
+  h2->next = h2;
+  h3 = (node *)malloc(sizeof(node));
+  h3->next = h3;
+  printf("\nFirst polynomial :  ");
+  readPoly(h1);
+  printf("\nSecond polynomial :  ");
+  readPoly(h2);
+  addPoly(h1,h2,h3);
+  printf("\n1st poly:\t");
+  display(h1);
+  printf("\n2nd poly:\t");
+  display(h2);
+  printf("\n\t\t----------");
+  printf("\nSum:\t\t");
+  display(h3);
+  evaluate(h3);
+  return 0;
+}
+void insEnd(node *h, int c, int e1, int e2, int e3)
+{
+  node *temp = h->next, *n = (node *)malloc(sizeof(node));
+  n->next=n;
+  n->c = c;
+  n->e1 = e1;
+  n->e2 = e2;
+  n->e3 = e3;
+  n->next = h;
+  n->flag = 0;
+  while (temp->next != h)
+    temp = temp->next;
+  n->next = temp->next;
+  temp->next = n;
+}
+void readPoly(node *h)
+{
+  int c, e1, e2, e3;
+  char ch;
+  do
+  {
+    printf("\nEnter coefficients, exponent 1, exponent 2 and exponent 3: ");
+    scanf("%d%d%d%d",&c, &e1, &e2, &e3);
+    insEnd(h, c, e1, e2, e3);
+    printf("\nDo you want to add another term Y/N:  ");
+    ch=getche();
+  } while (ch == 'y' || ch == 'Y');
+}
+void addPoly(node *h1, node *h2, node *h3)
+{
+  node *p1 = h1->next, *p2;
+  int x;
+  while (p1 != h1)
+  {
+    p2 = h2->next;
+    while (p2!=h2)
+    {
+      if (p1->e1 == p2->e1 && p1->e2 == p2->e2 && p1->e3 == p2->e3 )
+      {
+        x = p1->c + p2->c;
+        insEnd(h3, x, p1->e1, p1->e2, p1->e3);
+        p1->flag = 1;
+        p2->flag = 1;
+      }
+      p2 = p2->next;
+    }
+    p1 = p1->next;
+  }
+  p1 = p1->next;
+  p2 = p2->next;
+  while (p1 != h1)
+  {
+    if (p1->flag == 0)
+      insEnd(h3, p1->c, p1->e1, p1->e2, p1->e3);
+    p1 = p1->next;
+  }
+  while (p2 != h2)
+  {
+    if (p2->flag == 0)
+      insEnd(h3, p2->c, p2->e1, p2->e2, p2->e3);
+    p2 = p2->next;
+  }
+}
+void display(node * h)
+{
+  node *p = h->next;
+  if(p==h)
+  {
+    printf("\nList is empty");
+    return;
+  }
+  while (p != h)
+  {
+    printf(" %+dx^%dy^%dz^%d ", p->c, p->e1, p->e2, p->e3);
+    p = p->next;
+  }
+}
+void evaluate(node * h3)
+{
+  node *p3 = h3->next;
+  int x, y, z, sum = 0;
+  printf("\nEnter the value of x, y and z : ");
+  scanf("%d%d%d", &x, &y, &z);
+  while (p3 != h3)
+  {
+    sum += p3->c * pow(x, p3->e1) * pow(y, p3->e2) * pow(z, p3->e3);
+    p3 = p3->next;
+  }
+  printf("\nSolution = %d", sum);
+}
 ```
 
 ### Output
@@ -831,7 +958,7 @@ ___
 
 ### Output
 
-![Third program output]()
+![Third program output](/OutputImages/9.png)
 
 ___
 
